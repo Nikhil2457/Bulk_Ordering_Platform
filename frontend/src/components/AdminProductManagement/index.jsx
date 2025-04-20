@@ -7,7 +7,7 @@ const AdminProductManagement = () => {
   const [form, setForm] = useState({ name: '', price: '', unit: '', image: '' });
 
   const fetchProducts = async () => {
-    const res = await axios.get('http://localhost:5000/api/products');
+    const res = await axios.get('http://bulk-ordering-platform.onrender.com/api/products');
     setProducts(res.data);
   };
 
@@ -18,13 +18,13 @@ const AdminProductManagement = () => {
   const handleAddProduct = async (e) => {
     e.preventDefault();
     if (!form.name || !form.price || !form.unit) return;
-    await axios.post('http://localhost:5000/api/products', form);
+    await axios.post('http://bulk-ordering-platform.onrender.com/api/products', form);
     setForm({ name: '', price: '', unit: '', image: '' });
     fetchProducts();
   };
 
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:5000/api/products/${id}`);
+    await axios.delete(`http://bulk-ordering-platform.onrender.com/api/products/${id}`);
     fetchProducts();
   };
 
@@ -36,7 +36,7 @@ const AdminProductManagement = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     if (!form.id) return;
-    await axios.put(`http://localhost:5000/api/products/${form.id}`, form);
+    await axios.put(`http://bulk-ordering-platform.onrender.com/api/products/${form.id}`, form);
     setForm({ name: '', price: '', unit: '', image: '' });
     fetchProducts();
   };

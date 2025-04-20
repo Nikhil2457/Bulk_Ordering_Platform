@@ -7,7 +7,7 @@ const ProductCard = ({ product }) => {
 
   const handleAddToCart = async () => {
     try {
-      await axios.post('http://localhost:5000/api/cart', { productId: id ,quantity: 1});
+      await axios.post('http://bulk-ordering-platform.onrender.com/api/cart', { productId: id ,quantity: 1});
       alert('Added to cart!');
     } catch (err) {
       console.error('Error adding to cart', err);

@@ -24,7 +24,7 @@ const productRoutes = require('./routes/productRoutes');
 const app = express();
 app.use(cookieParser());
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: 'https://bulk-ordering-platform.vercel.app',
   credentials: true
 }));
 app.use(express.json());
