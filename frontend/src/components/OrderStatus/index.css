@@ -1,0 +1,55 @@
+.status-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #f8f8f8;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.status-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.status-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  border-bottom: 1px solid #ddd;
+  padding: 0.8rem 0;
+}
+
+.status-item:last-child {
+  border-bottom: none;
+}
+
+.status-text {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* Status Colors */
+.status-pending {
+  color: #ff9800;
+}
+.status-inprogress {
+  color: #2196f3;
+}
+.status-delivered {
+  color: #4caf50;
+}
+.status-cancelled {
+  color: #f44336;
+}
+
+/* Responsive Styling */
+@media (min-width: 600px) {
+  .status-item {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
