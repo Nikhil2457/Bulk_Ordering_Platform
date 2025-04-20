@@ -12,7 +12,7 @@ const AdminDashboard = () => {
 
   const handleLogin = async () => {
     try {
-      const res = await fetch('http://bulk-ordering-platform.onrender.com/api/admin/login', {
+      const res = await fetch('https://bulk-ordering-platform.onrender.com/api/admin/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),

@@ -8,7 +8,7 @@ const OrderStatus = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await axios.get('http://bulk-ordering-platform.onrender.com/api/orders');
+        const res = await axios.get('https://bulk-ordering-platform.onrender.com/api/orders');
         if (Array.isArray(res.data)) {
           setOrders(res.data);
         } else {

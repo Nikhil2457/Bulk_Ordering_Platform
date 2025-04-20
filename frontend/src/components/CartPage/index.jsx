@@ -9,7 +9,7 @@ const CartPage = () => {
 
   const handleClearCart = async () => {
     try {
-      await axios.delete('http://bulk-ordering-platform.onrender.com/api/cart'); // Calls clearCart
+      await axios.delete('https://bulk-ordering-platform.onrender.com/api/cart'); // Calls clearCart
       fetchCartItems(); // Refresh UI
     } catch (error) {
       console.error('Error clearing cart:', error);
@@ -19,7 +19,7 @@ const CartPage = () => {
 
   const fetchCartItems = async () => {
     try {
-      const response = await axios.get('http://bulk-ordering-platform.onrender.com/api/cart');
+      const response = await axios.get('https://bulk-ordering-platform.onrender.com/api/cart');
       setCartItems(response.data);
     } catch (error) {
       console.error('Error fetching cart items:', error);
@@ -32,7 +32,7 @@ const CartPage = () => {
 
   const handleRemove = async (id) => {
     try {
-      await axios.delete(`http://bulk-ordering-platform.onrender.com/api/cart/${id}`);
+      await axios.delete(`https://bulk-ordering-platform.onrender.com/api/cart/${id}`);
       fetchCartItems(); // Refresh after deletion
     } catch (error) {
       console.error('Error removing item:', error);

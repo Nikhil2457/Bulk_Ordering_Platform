@@ -7,7 +7,7 @@ const AdminOrderManagement = () => {
 
   const fetchOrders = async () => {
     try {
-      const res = await axios.get('http://bulk-ordering-platform.onrender.com/api/orders');
+      const res = await axios.get('https://bulk-ordering-platform.onrender.com/api/orders');
       if (Array.isArray(res.data)) {
         setOrders(res.data);
       } else {
@@ -27,7 +27,7 @@ const AdminOrderManagement = () => {
     else if (currentStatus === 'In Progress') nextStatus = 'Delivered';
     else return;
 
-    await axios.put(`http://bulk-ordering-platform.onrender.com/api/orders/${id}/status`, { status: nextStatus });
+    await axios.put(`https://bulk-ordering-platform.onrender.com/api/orders/${id}/status`, { status: nextStatus });
     fetchOrders();
   };
 
