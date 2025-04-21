@@ -1,19 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 
 const ProtectedRoute = ({ children }) => {
   const navigate = useNavigate();
-  const token = Cookies.get('token');
+  const [isChecking, setIsChecking] = useState(true);
 
   useEffect(() => {
+    const token = Cookies.get('token');
     if (!token) {
       navigate('/login');
+    } else {
+      setIsChecking(false);
     }
-  }, [token, navigate]);
+  }, [navigate]);
 
-  // Only render children if token exists
-  return token ? children : null;
+  if (isChecking) return null;
+
+  return children;
 };
 
 export default ProtectedRoute;

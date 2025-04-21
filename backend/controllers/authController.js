@@ -32,11 +32,18 @@ const registerUser = async (req, res) => {
       const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '30d' });
   
       // Respond with the user's info and the token
+      res.cookie('token', token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'None',
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+      });
+      
       res.status(201).json({
         id: user.id,
         username: user.username,
-        token, // Send token as part of the response
       });
+      
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Error registering user' });
@@ -58,11 +65,18 @@ const loginUser = async (req, res) => {
 
   const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '30d' });
 
-  res.json({
+  res.cookie('token', token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'None',
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+  });
+  
+  res.status(201).json({
     id: user.id,
     username: user.username,
-    token,
   });
+  
 };
 
 module.exports = { registerUser, loginUser };
