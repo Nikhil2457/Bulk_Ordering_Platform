@@ -1,70 +1,91 @@
 .cart-page {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+  background-color: #fdfdfd;
+}
+
+.cart-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.cart-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.empty-msg {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #777;
+}
+
+.total-box {
+  text-align: center;
+  font-size: 1.3rem;
+  margin-top: 20px;
+}
+
+.clear-cart-box {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.clear-cart-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #ff5252;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.clear-cart-btn:hover {
+  background-color: #e53935;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
   .cart-title {
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
+    font-size: 1.5rem;
   }
-  
-  .cart-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+
+  .total-box h3 {
+    font-size: 1.1rem;
   }
-  
-  .empty-msg {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #777;
-  }
-  
-  .total-box {
-    margin-top: 30px;
-    text-align: right;
-    padding: 15px;
-    background-color: #e0ffe0;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: #1a1a1a;
-  }
-  
-  /* Responsive */
-  @media screen and (max-width: 768px) {
-    .cart-page {
-      padding: 10px;
-    }
-  
-    .cart-title {
-      font-size: 1.5rem;
-    }
-  
-    .total-box {
-      text-align: center;
-    }
-  }
-  .clear-cart-box {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
+
   .clear-cart-btn {
-    padding: 10px 20px;
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 0.9rem;
+    padding: 8px 16px;
   }
-  
-  .clear-cart-btn:hover {
-    background-color: #cc0000;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cart-title {
+  animation: fadeInUp 0.5s ease-in-out;
+}
+
+.cart-card {
+  animation: fadeInUp 0.4s ease-in-out;
+  transition: transform 0.2s ease;
+}
+
+.cart-card:hover {
+  transform: scale(1.02);
+}

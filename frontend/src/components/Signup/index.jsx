@@ -16,7 +16,7 @@ const Signup = () => {
       await axios.post('https://bulk-ordering-platform.onrender.com/api/auth/signup', form);
       alert('Signup successful');
       navigate('/login');
-    } catch (err) {
+    } catch (err) { 
       alert(err.response?.data?.message || 'Signup failed');
     }
   };

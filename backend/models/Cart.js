@@ -3,6 +3,10 @@ const sequelize = require('../utils/db');
 const Product = require('./Product');
 
 const Cart = sequelize.define('Cart', {
+  userId: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
   productId: {
     type: DataTypes.INTEGER,
     allowNull: false

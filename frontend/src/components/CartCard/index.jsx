@@ -1,10 +1,8 @@
 import React from 'react';
 import './index.css';
 
-const CartCard = ({ cart, onRemove }) => {
-  // ✅ Correct
+const CartCard = ({ cart, onRemove, onIncrement, onDecrement }) => {
   const { id, name, image, unit, quantity, totalPrice } = cart;
-
 
   return (
     <div className="cart-card">
@@ -12,10 +10,14 @@ const CartCard = ({ cart, onRemove }) => {
       <div className="cart-details">
         <h4>{name}</h4>
         <p>Unit: {unit}</p>
-        <p>Quantity: {quantity}</p>
+        <p>Quantity: 
+          <button onClick={onDecrement} className="qty-btn">-</button>
+          {quantity}
+          <button onClick={onIncrement} className="qty-btn">+</button>
+        </p>
         <p>Total: ₹{totalPrice}</p>
       </div>
-      <button className="remove-btn" onClick={() => onRemove(id)}>Remove</button>
+      <button className="remove-btn" onClick={onRemove}>Remove</button>
     </div>
   );
 };

@@ -17,7 +17,7 @@ const OrderForm = () => {
   // Fetch order history
   const fetchOrderHistory = async () => {
     try {
-      const response = await axios.get('https://bulk-ordering-platform.onrender.com/api/orders');
+      const response = await axios.get('https://bulk-ordering-platform.onrender.com/api/orders/user',{withCredentials:true});
       setOrderHistory(response.data);
     } catch (error) {
       console.error('Error fetching order history:', error);
@@ -32,7 +32,7 @@ const OrderForm = () => {
     // Fetch cart items when the component is mounted
     const fetchCartItems = async () => {
       try {
-        const response = await axios.get('https://bulk-ordering-platform.onrender.com/api/cart');
+        const response = await axios.get('https://bulk-ordering-platform.onrender.com/api/cart',{withCredentials:true});
         setCartItems(response.data); // Set cart items in state
       } catch (error) {
         console.error('Error fetching cart items:', error);
@@ -72,11 +72,11 @@ const OrderForm = () => {
       };
 
       // Send order data to backend
-      const response = await axios.post('https://bulk-ordering-platform.onrender.com/api/orders', orderData);
+      const response = await axios.post('https://bulk-ordering-platform.onrender.com/api/orders', orderData,{withCredentials:true});
       console.log('Order successfully placed:', response.data);
 
       // Clear cart after placing the order (optional)
-      await axios.delete('https://bulk-ordering-platform.onrender.com/api/cart');
+      await axios.delete('https://bulk-ordering-platform.onrender.com/api/cart',{withCredentials:true});
 
       setIsConfirming(false); // Close confirmation modal
 

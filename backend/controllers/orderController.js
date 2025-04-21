@@ -7,16 +7,15 @@ let orderIdCounter = 1; // Simple counter for unique order IDs
 exports.placeOrder = async (req, res) => {
   try {
     const { name, contact, address, items } = req.body;
+    const userId = req.userId; // ⬅ from authMiddleware
 
-    // Create Order
     const newOrder = await Order.create({
-      id: orderIdCounter++,
       name,
       contact,
-      address
+      address,
+      userId, // 👈 Link to user
     });
 
-    // Create OrderItems
     const orderItems = items.map((item) => ({
       product_name: item.product_name,
       quantity: item.quantity,
@@ -33,6 +32,7 @@ exports.placeOrder = async (req, res) => {
     res.status(500).json({ message: 'Error placing order' });
   }
 };
+
 
 exports.getAllOrders = async (req, res) => {
   try {
@@ -73,6 +73,23 @@ exports.updateOrderStatus = async (req, res) => {
   
       res.status(200).json({ status: order.status });
     } catch (error) {
-      res.status(500).json({ error: 'Error retrieving order status' });
+      res.status(500).json({ error: 'Error retr ieving order status' });
+    }
+  };  
+
+  exports.getUserOrders = async (req, res) => {
+    const userId = req.userId;
+  
+    try {
+      const orders = await Order.findAll({
+        where: { userId },
+        include: [{ model: OrderItem, as: 'items' }]
+      });
+  
+      res.json(orders);
+    } catch (err) {
+      console.error('Error fetching user orders:', err);
+      res.status(500).json({ message: 'Error fetching orders' });
     }
   };
+  

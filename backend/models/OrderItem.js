@@ -1,6 +1,6 @@
 // models/OrderItem.js
 const { DataTypes } = require('sequelize');
-const sequelize = require('../utils/db'); // Import Sequelize instance
+const sequelize = require('../utils/db');
 
 const OrderItem = sequelize.define('OrderItem', {
   product_name: {
@@ -18,16 +18,26 @@ const OrderItem = sequelize.define('OrderItem', {
   productId: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    references: {
+      model: 'Products', // name of the table
+      key: 'id',
+    },
   },
   orderId: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    references: {
+      model: 'Orders', // name of the table
+      key: 'id',
+    },
   },
 });
 
-// Only associate after defining all models
+// Association method
 OrderItem.associate = (models) => {
   OrderItem.belongsTo(models.Order, { foreignKey: 'orderId' });
+  // Optional if you have a Product model:
+  // OrderItem.belongsTo(models.Product, { foreignKey: 'productId' });
 };
 
 module.exports = OrderItem;
