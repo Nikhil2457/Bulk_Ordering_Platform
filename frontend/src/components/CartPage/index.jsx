@@ -45,7 +45,7 @@ const CartPage = () => {
 
   const handleIncrement = async (id) => {
     try {
-      await axios.patch(`https://bulk-ordering-platform.onrender.com/api/cart/${id}/increment`, {}, { withCredentials: true });
+      await axios.put(`https://bulk-ordering-platform.onrender.com/api/cart/${id}/increment`, {}, { withCredentials: true });
       fetchCartItems();
     } catch (error) {
       console.error('Error incrementing quantity:', error);
@@ -54,7 +54,7 @@ const CartPage = () => {
 
   const handleDecrement = async (id) => {
     try {
-      await axios.patch(`https://bulk-ordering-platform.onrender.com/api/cart/${id}/decrement`, {}, { withCredentials: true });
+      await axios.put(`https://bulk-ordering-platform.onrender.com/api/cart/${id}/decrement`, {}, { withCredentials: true });
       fetchCartItems();
     } catch (error) {
       console.error('Error decrementing quantity:', error);

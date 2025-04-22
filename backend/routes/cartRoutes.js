@@ -19,7 +19,7 @@ router.delete('/:id', removeFromCart);
 router.delete('/', clearCart);
 
 // New routes for quantity updates
-router.patch('/:id/increment', incrementQuantity);
-router.patch('/:id/decrement', decrementQuantity);
+router.put('/:id/increment', incrementQuantity);
+router.put('/:id/decrement', decrementQuantity);
 
 module.exports = router;
