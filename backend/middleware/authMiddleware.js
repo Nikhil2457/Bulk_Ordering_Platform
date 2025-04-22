@@ -24,7 +24,7 @@ const isAdmin = (req, res, next) => {
 const authMiddleware = (req, res, next) => {
   const token = req.cookies.token;
   console.log(token)
-  if (!token) return res.status(401).json({ message: 'Unauthorized' });
+  if (!token) return res.status(401).json({ message: 'Unauthorized' ,token});
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
