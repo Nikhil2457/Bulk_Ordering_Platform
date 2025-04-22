@@ -10,7 +10,8 @@ const CartCard = ({ cart, onRemove, onIncrement, onDecrement }) => {
       <div className="cart-details">
         <h4>{name}</h4>
         <p>Unit: {unit}</p>
-        <p>Quantity: 
+        <p>
+          Quantity: 
           <button onClick={onDecrement} className="qty-btn">-</button>
           {quantity}
           <button onClick={onIncrement} className="qty-btn">+</button>

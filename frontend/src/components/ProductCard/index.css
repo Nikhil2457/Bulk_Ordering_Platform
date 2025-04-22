@@ -1,54 +1,84 @@
+/* Product Card Styles */
 .product-card {
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 280px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  transition: transform 0.2s ease;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  margin: 20px;
 }
 
 .product-card:hover {
-  transform: scale(1.03);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
+/* Product Image */
 .product-image {
   width: 100%;
-  height: auto;
-  max-height: 200px;
+  height: 180px;
   object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+  transition: opacity 0.3s ease;
+}
+
+.product-card:hover .product-image {
+  opacity: 0.8;
+}
+
+/* Product Info */
+.product-info {
+  padding: 15px;
 }
 
 .product-name {
-  font-size: 1.2rem;
+  font-size: 18px;
   font-weight: bold;
-  color: #333;
-}
-
-.product-price {
-  font-size: 1rem;
-  color: #007b55;
-  margin-top: 0.5rem;
+  margin: 10px 0;
 }
 
 .product-unit {
-  font-size: 0.9rem;
-  color: #777;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
 }
 
-@media screen and (min-width: 600px) {
-  .product-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    padding: 1rem;
-  }
+.product-price {
+  font-size: 16px;
+  color: #0077b6;
+  margin-bottom: 15px;
+  font-weight: 500;
 }
-.addbtn{
-  background-color: #007b55;
+
+/* Add to Cart Button */
+.addbtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  background-color: #00b4d8;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.addbtn:hover {
+  background-color: #0077b6;
+  transform: scale(1.05);
+}
+
+.addbtn svg {
+  margin-right: 8px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .product-card {
+    width: 100%;
+    margin: 15px 0;
+  }
 }

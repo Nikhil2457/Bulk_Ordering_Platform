@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { FaBars, FaTimes, FaShoppingCart, FaHome, FaClipboardList, FaUserShield, FaSignOutAlt, FaTruck } from 'react-icons/fa';
 import './index.css';
 
 const Header = () => {
@@ -20,19 +21,21 @@ const Header = () => {
   return (
     <header className="header">
       <div className="logo">
-        <h1>Bulk Order</h1>
+        <h1>Bulk<span>Order</span></h1>
       </div>
+
       <div className="hamburger" onClick={toggleMenu}>
-        ☰
+        {isMenuOpen ? <FaTimes /> : <FaBars />}
       </div>
+
       <nav className={`nav ${isMenuOpen ? 'open' : ''}`}>
         <ul className="navList">
-          <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
-          <li><Link to="/cart" onClick={toggleMenu}>Cart</Link></li>
-          <li><Link to="/order" onClick={toggleMenu}>Place Order</Link></li>
-          <li><Link to="/track-order" onClick={toggleMenu}>Track Order</Link></li>
-          <li><Link to="/admin" onClick={toggleMenu}>Admin</Link></li>
-          <li><button onClick={handleLogout}>Logout</button></li>
+          <li><Link to="/" onClick={toggleMenu}><FaHome /> Home</Link></li>
+          <li><Link to="/cart" onClick={toggleMenu}><FaShoppingCart /> Cart</Link></li>
+          <li><Link to="/order" onClick={toggleMenu}><FaClipboardList /> Place Order</Link></li>
+          <li><Link to="/track-order" onClick={toggleMenu}><FaTruck /> Track Order</Link></li>
+          <li><Link to="/admin" onClick={toggleMenu}><FaUserShield /> Admin</Link></li>
+          <li><button className="logoutBtn" onClick={handleLogout}><FaSignOutAlt /> Logout</button></li>
         </ul>
       </nav>
     </header>

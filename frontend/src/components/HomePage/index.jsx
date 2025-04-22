@@ -6,16 +6,21 @@ import './index.css';
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProducts = async () => {
+      setLoading(true);
       try {
         const data = await getProducts();
         setProducts(data);
       } catch (error) {
         console.error("Error fetching products:", error);
+      } finally {
+        setLoading(false);
       }
     };
+    
 
     fetchProducts();
   }, []);
@@ -29,14 +34,21 @@ const HomePage = () => {
       </div>
 
       <div className="productList">
-        {products.length > 0 ? (
-          products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))
-        ) : (
-          <p className="loading-text">Loading products...</p>
-        )}
-      </div>
+  {loading ? (
+    <div className="spinner-container">
+      <div className="spinner"></div>
+    </div>
+  ) : (
+    products.length > 0 ? (
+      products.map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ))
+    ) : (
+      <p>No products available.</p>
+    )
+  )}
+</div>
+
     </div>
   );
 };

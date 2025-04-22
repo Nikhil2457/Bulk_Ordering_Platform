@@ -4,11 +4,14 @@ import './index.css';
 
 const OrderStatus = () => {
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await axios.get('https://bulk-ordering-platform.onrender.com/api/orders');
+        setLoading(true);
+        const res = await axios.get('https://bulk-ordering-platform.onrender.com/api/orders/user',{withCredentials:true});
         if (Array.isArray(res.data)) {
           setOrders(res.data);
         } else {
@@ -17,8 +20,11 @@ const OrderStatus = () => {
       } catch (error) {
         console.error('Error fetching orders:', error);
         setOrders([]);
+      } finally {
+        setLoading(false);
       }
     };
+    
 
     fetchOrders();
     const intervalId = setInterval(fetchOrders, 5000); // auto-refresh every 5s
@@ -26,9 +32,18 @@ const OrderStatus = () => {
     return () => clearInterval(intervalId); // cleanup
   }, []);
 
+  if (loading) {
+    return (
+      <div className="spinner-container">
+        <div className="spinner"></div>
+      </div>
+    );
+  }
+  
   if (orders.length === 0) {
     return <p>No Order to Track</p>;
   }
+  
 
   return (
     <div className="status-container">
