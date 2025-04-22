@@ -15,6 +15,10 @@ const CartPage = () => {
       console.error('Error fetching cart items:', error);
     }
   };
+   
+  useEffect(() => {
+    fetchCartItems();
+  }, []);
 
   const handleClearCart = async () => {
     try {
