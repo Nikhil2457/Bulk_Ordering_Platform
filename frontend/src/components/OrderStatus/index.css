@@ -1,7 +1,5 @@
 .status-container {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 1rem;
+
   border-radius: 10px;
   background-color: #f8f8f8;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -13,6 +11,43 @@
   font-size: 1.8rem;
   color: #333;
 }
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(135deg, #222, #000);
+  font-family: 'Arial', sans-serif;
+  perspective: 1000px;
+}
+
+.spin-text {
+  font-size: 5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 
+      1px 1px 0px #e63946, 
+      2px 2px 0px #f77f00, 
+      3px 3px 0px #fcbf49, 
+      4px 4px 0px #a8dadc, 
+      5px 5px 0px #457b9d;
+  transform: rotateY(0deg);
+  transform-style: preserve-3d;
+  animation: spin-3d 4s infinite linear;
+}
+
+@keyframes spin-3d {
+  0% {
+      transform: rotateY(0deg);
+  }
+  100% {
+      transform: rotateY(360deg);
+  }
+}
+
 
 .status-item {
   display: flex;
