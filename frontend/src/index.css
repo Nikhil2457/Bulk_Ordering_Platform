@@ -59,7 +59,7 @@ a {
 
 /* Home Page */
 .homePage {
-  padding: 20px;
+  padding: 5px;
   text-align: center;
 }
 
@@ -99,6 +99,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
+    
   }
 
   .navList li {

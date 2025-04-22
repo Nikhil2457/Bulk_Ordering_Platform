@@ -1,7 +1,6 @@
 .homePage {
   font-family: Arial, sans-serif;
   margin: 0;
-  padding: 2rem 1rem;
   background-color: #f9f9f9;
 }
 
@@ -22,16 +21,14 @@
 .productList {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
+  gap: 1rem;
   justify-items: center;
   padding: 0;
   margin-top: 2rem;
 }
 
 @media screen and (min-width: 768px) {
-  .homePage {
-    padding: 2rem;
-  }
+
 
   .homePage h1 {
     font-size: 2.5rem;

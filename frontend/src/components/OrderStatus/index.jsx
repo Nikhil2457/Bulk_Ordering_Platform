@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Header from "../Header"
 import './index.css';
 
 const OrderStatus = () => {
@@ -47,6 +48,7 @@ const OrderStatus = () => {
 
   return (
     <div className="status-container">
+      <Header/>
       <h2>Order Status</h2>
       {orders.map((order) => (
         <div key={order.id} className="status-item">

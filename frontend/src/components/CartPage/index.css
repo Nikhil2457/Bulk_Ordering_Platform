@@ -1,14 +1,14 @@
 .cart-page {
-  padding: 20px;
-  max-width: 1200px;
-  margin: auto;
+  padding: 5px;
   background-color: #fdfdfd;
+  min-height: 100vh;
 }
 
 .cart-title {
   text-align: center;
   font-size: 2rem;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .cart-list {

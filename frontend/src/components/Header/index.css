@@ -25,7 +25,6 @@
 }
 .navList {
   display: flex;
-  gap: 20px;
   list-style: none;
 }
 .navList li a, .navList li button {
@@ -37,7 +36,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 3px;
   transition: color 0.3s ease;
 }
 .navList li a:hover, .navList li button:hover {
@@ -50,7 +49,7 @@
   border: none;
   color: white;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: bold;
 }
 
 /* Hamburger for Mobile */
@@ -80,7 +79,6 @@
 
   .navList {
     flex-direction: column;
-    gap: 15px;
     padding: 10px 20px;
   }
 
