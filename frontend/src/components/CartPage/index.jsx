@@ -7,6 +7,9 @@ import './index.css';
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
 
+  console.log("Cart Items:", cartItems);
+
+
   const fetchCartItems = async () => {
     try {
       const response = await axios.get('https://bulk-ordering-platform.onrender.com/api/cart', { withCredentials: true });
@@ -19,6 +22,8 @@ const CartPage = () => {
   useEffect(() => {
     fetchCartItems();
   }, []);
+
+  console.log("Cart Items:", cartItems);
 
   const handleClearCart = async () => {
     try {
