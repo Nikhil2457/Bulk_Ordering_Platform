@@ -42,11 +42,7 @@ const OrderStatus = () => {
   }
   
   if (orders.length === 0) {
-    return (
-      <div class="spin-container">
-        <h1 class="spin-text">3D SPIN</h1>
-    </div>
-    );
+    return <h1 className='no-order'>No Order to Track. Please Order Now!</h1>;
   }
   
 
