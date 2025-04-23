@@ -85,7 +85,7 @@ const OrderForm = () => {
     } finally {
       setPlacingOrder(false);
     }
-  };
+  };  
 
   const handleCancelOrder = () => {
     setIsConfirming(false);

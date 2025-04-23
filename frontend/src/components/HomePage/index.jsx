@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { getProducts } from '../../utils/api';
 import ProductCard from '../ProductCard';
 import Header from '../Header';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import './index.css';
 
 const HomePage = () => {
@@ -27,6 +30,7 @@ const HomePage = () => {
 
   return (
     <div className="homePage">
+      <ToastContainer position="top-right" autoClose={3000} />
       <Header />
       <div className="intro">
         <h1>Welcome to the Bulk Ordering Platform</h1>

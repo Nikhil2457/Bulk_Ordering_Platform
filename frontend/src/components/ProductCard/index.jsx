@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { FaShoppingCart } from 'react-icons/fa';
+import toast from 'react-hot-toast';
 import './index.css';
 
 const ProductCard = ({ product }) => {
@@ -8,11 +9,15 @@ const ProductCard = ({ product }) => {
 
   const handleAddToCart = async () => {
     try {
-      await axios.post('https://bulk-ordering-platform.onrender.com/api/cart', { productId: id, quantity: 1 }, { withCredentials: true });
-      alert('Added to cart!');
+      await axios.post(
+        'https://bulk-ordering-platform.onrender.com/api/cart',
+        { productId: id, quantity: 1 },
+        { withCredentials: true }
+      );
+      toast.success('Added to cart!');
     } catch (err) {
       console.error('Error adding to cart', err);
-      alert('Failed to add to cart');
+      toast.error('Failed to add to cart');
     }
   };
 
