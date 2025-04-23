@@ -27,6 +27,14 @@
   margin-top: 2rem;
 }
 
+.products-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+
 @media screen and (min-width: 768px) {
 
 
