@@ -26,6 +26,55 @@
   padding: 0;
   margin-top: 2rem;
 }
+.intro {
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(to right, #e0ffe0, #ffffff);
+  border-radius: 16px;
+  margin: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.intro h1 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.intro p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* Tablet view */
+@media (max-width: 768px) {
+  .intro {
+    padding: 1.5rem;
+  }
+
+  .intro h1 {
+    font-size: 1.6rem;
+  }
+
+  .intro p {
+    font-size: 1rem;
+  }
+}
+
+/* Mobile view */
+@media (max-width: 480px) {
+  .intro {
+    padding: 1rem;
+  }
+
+  .intro h1 {
+    font-size: 1.3rem;
+  }
+
+  .intro p {
+    font-size: 0.95rem;
+  }
+}
 
 @media screen and (min-width: 768px) {
 
