@@ -3,31 +3,32 @@ import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
 import {
-  FaBars, FaTimes, FaShoppingCart, FaHome,
-  FaClipboardList, FaUserShield, FaSignOutAlt, FaTruck
+  FaBars, FaTimes, FaShoppingCart, FaHome, FaClipboardList,
+  FaUserShield, FaSignOutAlt, FaTruck
 } from 'react-icons/fa';
+import ConfirmModal from '../ConfirmModal';
 import './index.css';
 
 const Header = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [logoutInProgress, setLogoutInProgress] = useState(false); // NEW
 
-  const [logoutInProgress, setLogoutInProgress] = useState(false);
-
-const handleLogout = () => {
-  if (logoutInProgress) return;
-
-  const confirmLogout = window.confirm('Are you sure you want to logout?');
-  if (confirmLogout) {
+  const handleLogoutConfirm = () => {
+    if (logoutInProgress) return;
     setLogoutInProgress(true);
     Cookies.remove('token');
     toast.success('Logged out successfully');
     navigate('/login');
-  } else {
-    toast.info('Logout cancelled');
-  }
-};
+    setShowModal(false);
+    setLogoutInProgress(false);
+  };
 
+  const handleLogoutCancel = () => {
+    toast.info('Logout cancelled');
+    setShowModal(false);
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -51,12 +52,20 @@ const handleLogout = () => {
           <li><Link to="/track-order" onClick={toggleMenu}><FaTruck /> Track Order</Link></li>
           <li><Link to="/admin" onClick={toggleMenu}><FaUserShield /> Admin</Link></li>
           <li>
-            <button className="logoutBtn" onClick={handleLogout}>
+            <button className="logoutBtn" onClick={() => !logoutInProgress && setShowModal(true)}>
               <FaSignOutAlt /> Logout
             </button>
           </li>
         </ul>
       </nav>
+
+      {showModal && (
+        <ConfirmModal
+          message="Are you sure you want to logout?"
+          onConfirm={handleLogoutConfirm}
+          onCancel={handleLogoutCancel}
+        />
+      )}
     </header>
   );
 };

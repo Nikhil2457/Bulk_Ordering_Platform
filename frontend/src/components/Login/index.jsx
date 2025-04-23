@@ -3,12 +3,14 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -27,8 +29,8 @@ const Login = () => {
         { withCredentials: true }
       );
       Cookies.set('token', res.data.token, { expires: 7 });
-      toast.success('Login successful ');
-      setTimeout(() => navigate('/'), 1500); // slight delay for toast visibility
+      toast.success('Login successful');
+      setTimeout(() => navigate('/'), 1500);
     } catch (err) {
       toast.error(err.response?.data?.message || 'Login failed ❌');
     } finally {
@@ -47,16 +49,28 @@ const Login = () => {
           onChange={(e) => setUsername(e.target.value)}
           required
         />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+
+        <div className="password-field">
+          <input
+            type={showPassword ? 'text' : 'password'}
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button
+            type="button"
+            className="toggle-password-btn"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </button>
+        </div>
+
         <button type="submit" disabled={loading}>
           {loading ? <span className="loader"></span> : 'Login'}
         </button>
+
         <p className="redirect-text">
           New user? <Link to="/signup">Create an account</Link>
         </p>
