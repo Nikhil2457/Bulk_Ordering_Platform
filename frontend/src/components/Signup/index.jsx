@@ -1,23 +1,30 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 
 const Signup = () => {
   const [form, setForm] = useState({ username: '', password: '' });
-    const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       await axios.post('https://bulk-ordering-platform.onrender.com/api/auth/signup', form);
-      alert('Signup successful');
-      navigate('/');
-    } catch (err) { 
-      alert(err.response?.data?.message || 'Signup failed');
+      toast.success('Signup successful 🎉');
+      setTimeout(() => navigate('/'), 2000);
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Signup failed ❌');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -40,8 +47,11 @@ const Signup = () => {
           onChange={handleChange}
           required
         />
-        <button type="submit">Signup</button>
+        <button type="submit" disabled={loading}>
+          {loading ? <span className="loader" /> : 'Signup'}
+        </button>
       </form>
+      <ToastContainer position="top-center" autoClose={2000} />
     </div>
   );
 };
