@@ -23,6 +23,7 @@
   gap: 0.3rem;
   border-bottom: 1px solid #ddd;
   padding: 0.8rem 0;
+  margin: 3px;
 }
 
 .status-item:last-child {
@@ -54,6 +55,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin: 3px;
   }
 }
 .spinner-container {

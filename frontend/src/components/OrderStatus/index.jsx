@@ -28,7 +28,7 @@ const OrderStatus = () => {
     
 
     fetchOrders();
-    const intervalId = setInterval(fetchOrders, 5000); // auto-refresh every 5s
+    const intervalId = setInterval(fetchOrders, 10000); // auto-refresh every 5s
     console.log("api call requested")
     return () => clearInterval(intervalId); // cleanup
   }, []);
@@ -50,6 +50,7 @@ const OrderStatus = () => {
     <div className="status-container">
       <Header/>
       <h2>Order Status</h2>
+      <h3>Refreshed for every 10s</h3>
       {orders.map((order) => (
         <div key={order.id} className="status-item">
           <p><strong>ID:</strong> {order.id}</p>

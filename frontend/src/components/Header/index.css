@@ -81,7 +81,9 @@
     flex-direction: column;
     padding: 10px 20px;
   }
-
+  .logoutBtn{
+    font-weight: bold;
+  }
   .hamburger {
     display: block;
   }
