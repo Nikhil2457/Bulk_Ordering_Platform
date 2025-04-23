@@ -32,7 +32,7 @@ const HomePage = () => {
         <h1>Welcome to the Bulk Ordering Platform</h1>
         <p>Browse our wide range of fresh fruits and vegetables for bulk ordering.</p>
       </div>
-
+      <div className='products-container'>
       <div className="productList">
   {loading ? (
     <div className="spinner-container">
@@ -40,17 +40,15 @@ const HomePage = () => {
     </div>
   ) : (
     products.length > 0 ? (
-      <div className="products-container">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
+      products.map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ))
     ) : (
       <p>No products available.</p>
     )
   )}
 </div>
-
+</div>
 
     </div>
   );
