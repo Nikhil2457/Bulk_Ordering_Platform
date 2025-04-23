@@ -8,8 +8,9 @@ const AdminOrderManagement = () => {
   const fetchOrders = async () => {
     try {
       const res = await axios.get('https://bulk-ordering-platform.onrender.com/api/orders');
+      const sorted = res.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       if (Array.isArray(res.data)) {
-        setOrders(res.data);
+        setOrders(sorted);
       } else {
         console.error('Expected array, got:', res.data);
         setOrders([]); // Avoid map crash
@@ -42,6 +43,7 @@ const AdminOrderManagement = () => {
       {orders.map((order) => (
         <div key={order.id} className="order-card">
           <h4>Order ID: {order.id}</h4>
+          <p>Ordered on: {new Date(order.createdAt).toLocaleString()}</p>
           <p><strong>Name:</strong> {order.name}</p>
           <p><strong>Contact:</strong> {order.contact}</p>
           <p><strong>Address:</strong> {order.address}</p>

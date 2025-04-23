@@ -25,6 +25,7 @@
     border: 1px solid #ccc;
     border-radius: 6px;
     flex: 1 1 200px;
+    max-height: max-content;
   }
   
   form button {
@@ -108,7 +109,9 @@
       flex-direction: column;
       gap: 8px;
     }
-  
+    input {
+      max-height: max-content;
+    }
     .product-item img {
       height: 120px;
     }
