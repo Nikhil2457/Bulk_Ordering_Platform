@@ -39,7 +39,7 @@ const HomePage = () => {
       <Header />
       <div className="intro">
         <h1>Welcome {username ? `${username}` : ''} 👋</h1>
-        <h1>Welcome to the Bulk Ordering Platform</h1>
+        <h1>to the Bulk Ordering Platform</h1>
         <p>Browse our wide range of fresh fruits and vegetables for bulk ordering.</p>
       </div>
       
