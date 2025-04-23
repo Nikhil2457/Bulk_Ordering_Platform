@@ -88,14 +88,13 @@
 
 .password-field {
   position: relative;
+  width: 100%;
+  margin-bottom: 15px;
 }
 
-/* This will apply only to the password field input */
 .password-field input {
   width: 100%;
-  padding: 12px;             /* Same as regular input padding */
-  padding-right: 40px;       /* More space for icon */
-  margin-bottom: 15px;
+  padding: 12px 45px 12px 12px; /* 45px right padding for icon */
   border: 2px solid #ddd;
   border-radius: 10px;
   font-size: 16px;
@@ -103,22 +102,24 @@
   box-sizing: border-box;
 }
 
-
 .toggle-password-btn {
   position: absolute;
   top: 50%;
   right: 12px;
   transform: translateY(-50%);
-  background: transparent;
+  background: none;
   border: none;
-  cursor: pointer;
-  font-size: 20px;
-  color: #666;
   padding: 0;
+  width: 30px; /* fit inside input */
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  color: #555;
 }
+
 
 
 @keyframes spin {
