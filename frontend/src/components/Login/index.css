@@ -90,21 +90,34 @@
   position: relative;
 }
 
+/* This will apply only to the password field input */
 .password-field input {
   width: 100%;
-  padding-right: 35px; /* space for the toggle icon */
+  padding: 12px;             /* Same as regular input padding */
+  padding-right: 40px;       /* More space for icon */
+  margin-bottom: 15px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
 }
+
 
 .toggle-password-btn {
   position: absolute;
   top: 50%;
-  right: 10px;
+  right: 12px;
   transform: translateY(-50%);
   background: transparent;
   border: none;
   cursor: pointer;
-  font-size: 18px;
-  color: #555;
+  font-size: 20px;
+  color: #666;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
