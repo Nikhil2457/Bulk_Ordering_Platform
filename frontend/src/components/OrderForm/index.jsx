@@ -78,7 +78,7 @@ const OrderForm = () => {
       setOrder({ name: '', contact: '', address: '' });
       setIsConfirming(false);
       fetchOrderHistory();
-      toast.success('✅ Order placed successfully!');
+      toast.success('Order placed successfully!');
     } catch (error) {
       console.error('Error placing order:', error);
       toast.error('❌ Failed to place order');

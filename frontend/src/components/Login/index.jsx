@@ -27,7 +27,7 @@ const Login = () => {
         { withCredentials: true }
       );
       Cookies.set('token', res.data.token, { expires: 7 });
-      toast.success('Login successful ✅');
+      toast.success('Login successful ');
       setTimeout(() => navigate('/'), 1500); // slight delay for toast visibility
     } catch (err) {
       toast.error(err.response?.data?.message || 'Login failed ❌');
