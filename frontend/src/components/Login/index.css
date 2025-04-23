@@ -86,42 +86,6 @@
   display: inline-block;
 }
 
-.password-field {
-  position: relative;
-  width: 100%;
-  margin-bottom: 15px;
-}
-
-.password-field input {
-  width: 100%;
-  padding: 12px 45px 12px 12px; /* 45px right padding for icon */
-  border: 2px solid #ddd;
-  border-radius: 10px;
-  font-size: 16px;
-  transition: border-color 0.3s ease;
-  box-sizing: border-box;
-}
-
-.toggle-password-btn {
-  position: absolute;
-  top: 50%;
-  right: 12px;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  padding: 0;
-  width: 30px; /* fit inside input */
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 18px;
-  color: #555;
-}
-
-
-
 @keyframes spin {
   to {
     transform: rotate(360deg);
