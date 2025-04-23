@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '../Header';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import './index.css';
 
 const OrderForm = () => {
@@ -152,8 +151,6 @@ const OrderForm = () => {
           <p className="empty-msg">No history of orders</p>
         )}
       </div>
-
-      <ToastContainer position="top-center" autoClose={2000} />
     </div>
   );
 };
