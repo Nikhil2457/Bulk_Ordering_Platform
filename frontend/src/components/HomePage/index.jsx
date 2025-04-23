@@ -32,7 +32,7 @@ const HomePage = () => {
         <h1>Welcome to the Bulk Ordering Platform</h1>
         <p>Browse our wide range of fresh fruits and vegetables for bulk ordering.</p>
       </div>
-      <div className='products-container'>
+      
       <div className="productList">
   {loading ? (
     <div className="spinner-container">
@@ -47,7 +47,6 @@ const HomePage = () => {
       <p>No products available.</p>
     )
   )}
-</div>
 </div>
 
     </div>
