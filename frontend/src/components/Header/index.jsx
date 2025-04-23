@@ -12,16 +12,22 @@ const Header = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleLogout = () => {
-    const confirmLogout = window.confirm('Are you sure you want to logout?');
-    if (confirmLogout) {
-      Cookies.remove('token');
-      toast.success('Logged out successfully');
-      navigate('/login');
-    } else {
-      toast.info('Logout cancelled');
-    }
-  };
+  const [logoutInProgress, setLogoutInProgress] = useState(false);
+
+const handleLogout = () => {
+  if (logoutInProgress) return;
+
+  const confirmLogout = window.confirm('Are you sure you want to logout?');
+  if (confirmLogout) {
+    setLogoutInProgress(true);
+    Cookies.remove('token');
+    toast.success('Logged out successfully');
+    navigate('/login');
+  } else {
+    toast.info('Logout cancelled');
+  }
+};
+
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
