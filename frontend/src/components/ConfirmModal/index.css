@@ -11,7 +11,9 @@
     justify-content: center;
     z-index: 1000;
   }
-  
+  .para{
+    color: #007bff;
+  }
   .modal-box {
     background: white;
     padding: 20px 30px;
