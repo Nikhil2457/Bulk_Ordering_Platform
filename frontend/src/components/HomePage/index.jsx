@@ -1,45 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import { getProducts, getUsername} from '../../utils/api';
+import { getProducts } from '../../utils/api';
 import ProductCard from '../ProductCard';
 import Header from '../Header';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 import './index.css';
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [username, setUsername] = useState('');
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchProducts = async () => {
       setLoading(true);
       try {
-        const [productData, usernameData] = await Promise.all([
-          getProducts(),
-          getUsername(),
-        ]);
-        setProducts(productData);
-        setUsername(usernameData);
+        const data = await getProducts();
+        setProducts(data);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching products:", error);
       } finally {
         setLoading(false);
       }
     };
-  
-    fetchData();
+    
+
+    fetchProducts();
   }, []);
-  
 
   return (
     <div className="homePage">
-      <ToastContainer position="top-right" autoClose={3000} />
       <Header />
       <div className="intro">
-        <h1>Welcome {username ? `${username}` : ''} 👋</h1>
-        <h1>to the Bulk Ordering Platform</h1>
+        <h1>Welcome to the Bulk Ordering Platform</h1>
         <p>Browse our wide range of fresh fruits and vegetables for bulk ordering.</p>
       </div>
       
