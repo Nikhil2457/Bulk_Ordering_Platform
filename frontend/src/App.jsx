@@ -17,7 +17,7 @@ import './App.css';
 const App = () => {
   return (
     <>
-      <ToastContainer position="top-right" autoClose={3000} />
+      <ToastContainer position="top-center" autoClose={3000} />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
