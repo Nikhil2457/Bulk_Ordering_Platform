@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useNavigate, Link } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import './index.css';
 
 const Login = () => {
@@ -61,7 +60,7 @@ const Login = () => {
           New user? <Link to="/signup">Create an account</Link>
         </p>
       </form>
-      <ToastContainer position="top-center" autoClose={2000} />
+      
     </div>
   );
 };
