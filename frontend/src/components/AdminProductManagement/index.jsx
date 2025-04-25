@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './index.css'; // Style as needed
+import { toast } from 'react-toastify';
+import ConfirmModal from '../ConfirmModal'; // ✅ Import confirmation modal
+import './index.css';
 
 const AdminProductManagement = () => {
   const [products, setProducts] = useState([]);
   const [form, setForm] = useState({ name: '', price: '', unit: '', image: '' });
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null); // ✅ For tracking which product to delete
 
   const fetchProducts = async () => {
-    const res = await axios.get('https://bulk-ordering-platform.onrender.com/api/products');
-    setProducts(res.data);
+    try {
+      const res = await axios.get('https://bulk-ordering-platform.onrender.com/api/products');
+      setProducts(res.data);
+    } catch (err) {
+      toast.error('Failed to fetch products');
+    }
   };
 
   const handleChange = (e) => {
@@ -17,28 +24,44 @@ const AdminProductManagement = () => {
 
   const handleAddProduct = async (e) => {
     e.preventDefault();
-    if (!form.name || !form.price || !form.unit) return;
-    await axios.post('https://bulk-ordering-platform.onrender.com/api/products', form);
-    setForm({ name: '', price: '', unit: '', image: '' });
-    fetchProducts();
+    if (!form.name || !form.price || !form.unit) return toast.error('Fill all required fields');
+    try {
+      await axios.post('https://bulk-ordering-platform.onrender.com/api/products', form);
+      setForm({ name: '', price: '', unit: '', image: '' });
+      toast.success('Product added');
+      fetchProducts();
+    } catch {
+      toast.error('Failed to add product');
+    }
   };
 
-  const handleDelete = async (id) => {
-    await axios.delete(`https://bulk-ordering-platform.onrender.com/api/products/${id}`);
-    fetchProducts();
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`https://bulk-ordering-platform.onrender.com/api/products/${confirmDeleteId}`);
+      toast.success('Product deleted');
+      setConfirmDeleteId(null); // ✅ Close modal
+      fetchProducts();
+    } catch {
+      toast.error('Delete failed');
+    }
   };
 
-  const handleEdit = async (id) => {
+  const handleEdit = (id) => {
     const product = products.find(p => p.id === id);
-    setForm(product);
+    if (product) setForm(product);
   };
 
   const handleUpdate = async (e) => {
     e.preventDefault();
     if (!form.id) return;
-    await axios.put(`https://bulk-ordering-platform.onrender.com/api/products/${form.id}`, form);
-    setForm({ name: '', price: '', unit: '', image: '' });
-    fetchProducts();
+    try {
+      await axios.put(`https://bulk-ordering-platform.onrender.com/api/products/${form.id}`, form);
+      toast.success('Product updated');
+      setForm({ name: '', price: '', unit: '', image: '' });
+      fetchProducts();
+    } catch {
+      toast.error('Update failed');
+    }
   };
 
   useEffect(() => {
@@ -64,10 +87,19 @@ const AdminProductManagement = () => {
             <p>₹{p.price} / {p.unit}</p>
             {p.image && <img src={p.image} alt={p.name} />}
             <button onClick={() => handleEdit(p.id)}>Edit</button>
-            <button onClick={() => handleDelete(p.id)}>Delete</button>
+            <button onClick={() => setConfirmDeleteId(p.id)}>Delete</button>
           </div>
         ))}
       </div>
+
+      {/* ✅ Confirmation Modal */}
+      {confirmDeleteId && (
+        <ConfirmModal
+          message="Are you sure you want to delete this product?"
+          onConfirm={handleDelete}
+          onCancel={() => setConfirmDeleteId(null)}
+        />
+      )}
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './index.css'; // Style this as needed
+import { toast } from 'react-toastify'; // ✅ import toast
+import './index.css';
 
 const AdminOrderManagement = () => {
   const [orders, setOrders] = useState([]);
@@ -11,25 +12,33 @@ const AdminOrderManagement = () => {
       const sorted = res.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       if (Array.isArray(res.data)) {
         setOrders(sorted);
+        toast.success('Orders fetched successfully');
       } else {
         console.error('Expected array, got:', res.data);
-        setOrders([]); // Avoid map crash
+        setOrders([]);
+        toast.error('Unexpected data format');
       }
     } catch (error) {
       console.error('Error fetching orders:', error);
-      setOrders([]); // Fail safe
+      setOrders([]);
+      toast.error('Failed to fetch orders');
     }
   };
-  
 
   const updateStatus = async (id, currentStatus) => {
-    let nextStatus = '';
-    if (currentStatus === 'Pending') nextStatus = 'In Progress';
-    else if (currentStatus === 'In Progress') nextStatus = 'Delivered';
-    else return;
+    try {
+      let nextStatus = '';
+      if (currentStatus === 'Pending') nextStatus = 'In Progress';
+      else if (currentStatus === 'In Progress') nextStatus = 'Delivered';
+      else return;
 
-    await axios.put(`https://bulk-ordering-platform.onrender.com/api/orders/${id}/status`, { status: nextStatus });
-    fetchOrders();
+      await axios.put(`https://bulk-ordering-platform.onrender.com/api/orders/${id}/status`, { status: nextStatus });
+      toast.success(`Order marked as ${nextStatus}`);
+      fetchOrders();
+    } catch (error) {
+      console.error('Error updating status:', error);
+      toast.error('Failed to update order status');
+    }
   };
 
   useEffect(() => {

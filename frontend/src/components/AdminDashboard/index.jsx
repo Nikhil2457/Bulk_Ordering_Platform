@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import AdminOrderManagement from '../AdminOrderManagement';
 import AdminProductManagement from '../AdminProductManagement';
+import { toast } from 'react-toastify'; // ✅ import toast
 import './index.css';
 
 const AdminDashboard = () => {
@@ -22,11 +23,14 @@ const AdminDashboard = () => {
       if (data.success) {
         setLoggedIn(true);
         setError('');
+        toast.success('Login successful');
       } else {
         setError(data.message || 'Login failed');
+        toast.error(data.message || 'Login failed');
       }
     } catch (err) {
       setError('Login failed. Try again.');
+      toast.error('Login failed. Try again.');
     }
   };
 
@@ -52,7 +56,6 @@ const AdminDashboard = () => {
     );
   }
 
-  // ✅ Only shown after login
   return (
     <div className="admin-dashboard">
       <h1 className="dashboard-title">Admin Dashboard</h1>
